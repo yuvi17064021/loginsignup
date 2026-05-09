@@ -10,7 +10,7 @@
   <link href='https://cloudflare.com' rel='stylesheet' type='text/css'>
   <link rel="icon" type="image/ico" href="https://cloudinary.com">
   
-  <!-- Link to external CSS -->
+  <!-- This links to your test.css file -->
   <link rel="stylesheet" type="text/css" href="test.css">
 </head>
 <body>
@@ -48,11 +48,15 @@
   <div id="asdf">
     <div class="main1">
       <h2><u>Question</u></h2>
-      <p>William Henry Gates III is an American business magnate and principal founder of Microsoft Corporation...</p>
+      <p>William Henry Gates III (born October 28, 1955) is an American business magnate, investor, author, philanthropist, humanitarian, and principal founder of Microsoft Corporation.</p>
       <form>
         <div class="laptop">
-          <input type="checkbox"> I have a bike &nbsp;
-          <input type="checkbox"> I have a car
+          <input type="checkbox"> <span class="options">I have a bike</span> &nbsp;
+          <input type="checkbox"> <span class="options">I have a car</span>
+        </div>
+        <div class="mobile">
+           <input type="checkbox"> <span class="options">I have a bike</span><br>
+           <input type="checkbox"> <span class="options">I have a car</span>
         </div>
       </form>
     </div>
@@ -64,7 +68,7 @@
       <h2>Final Submission. No changes will be made further.</h2>
       <div class="share">
         <div onclick="myFunction4()"><a href="#">Go Back</a></div>
-        <div><a href="#" style="background: #67ae55; color: white;">Confirm</a></div>
+        <div><a href="#" style="background: #67ae55; color: white; border: none;">Confirm</a></div>
       </div>
     </div>
   </div>
@@ -81,6 +85,7 @@
     function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
 
     function abcFunction1(id) {
+      id = parseInt(id);
       if(id === 1) {
         document.getElementById("first").style.display = 'none';
         document.getElementById("middle").style.display = 'inline';
