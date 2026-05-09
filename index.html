@@ -152,26 +152,50 @@
       const isCorrect = userAnswers[i] === q.correct;
       if (isCorrect) score++;
       
-      // We use the CSS classes 'correct' and 'wrong' you defined in test.css
       reviewHtml += `
-        <div class="result-box ${isCorrect ? 'correct' : 'wrong'}">
-          <strong>Q${i+1}: ${q.q}</strong><br>
-          Your Answer: <i>${userAnswers[i] || "Skipped"}</i><br>
-          Correct Answer: <b>${q.correct}</b>
+        <div class="result-card ${isCorrect ? 'correct' : 'wrong'}">
+          <span class="status-badge ${isCorrect ? 'badge-correct' : 'badge-wrong'}">
+              ${isCorrect ? '✓ Correct' : '✗ Incorrect'}
+          </span>
+          <strong style="font-size:1.1rem;">Q${i+1}:</strong> 
+          <span style="color:#444;">${q.q}</span>
+          
+          <div style="margin-top:10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div>
+                  <span class="ans-label">YOUR ANSWER</span>
+                  <span class="ans-value" style="color:${isCorrect ? '#28a745' : '#d9534f'}">
+                      ${userAnswers[i] || "<i>Not Answered</i>"}
+                  </span>
+              </div>
+              ${!isCorrect ? `
+              <div>
+                  <span class="ans-label">CORRECT ANSWER</span>
+                  <span class="ans-value correct-val">${q.correct}</span>
+              </div>` : ''}
+          </div>
         </div>
       `;
     });
-
+  
+    const percentage = Math.round((score / questions.length) * 100);
     const display = document.getElementById("results-display");
+    
     display.innerHTML = `
-      <div class="score-card">Final Score: ${score} / ${questions.length}</div>
+      <div class="score-summary">
+          <span class="score-label">Final Grade</span>
+          <span class="score-number">${percentage}%</span>
+          <p style="color:#666;">You got <b>${score}</b> out of <b>${questions.length}</b> questions correct.</p>
+      </div>
       ${reviewHtml}
-      <div class="share"><a href="javascript:location.reload()" style="background:#1dc8cd; color:white;">Restart Test</a></div>
+      <div class="share" style="margin-top:30px;">
+          <a href="javascript:location.reload()" style="background:#1dc8cd; color:white;">Try Again</a>
+      </div>
     `;
     
     display.style.display = "block";
     document.getElementById("review-area").style.display = "none";
   }
+
 
   // Sidebar List Generation
   const list = document.getElementById("questionList");
