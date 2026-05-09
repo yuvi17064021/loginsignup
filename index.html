@@ -71,119 +71,133 @@
     <div id="last" style="display:none;" onclick="myFunction3()"><a href="#">Finish</a></div>
   </div>
 
-  <script>
-    const questions = [
-      { q: "What is the expected number of rolls of a fair 6-sided die to get a 6?", options: ["3", "6", "12", "36"], correct: "6" },
-      { q: "You have 100 coins, one is biased (heads 60%). You pick one and flip it 10 times, getting 10 heads. What is the probability it's the biased coin?", options: ["~10%", "~50%", "~90%", "~99%"], correct: "~90%" },
-      { q: "What is the square root of 0.1?", options: ["0.01", "0.316", "0.1", "1.0"], correct: "0.316" },
-      { q: "If it takes 5 machines 5 minutes to make 5 widgets, how long does it take 100 machines to make 100 widgets?", options: ["1 minute", "5 minutes", "100 minutes", "500 minutes"], correct: "5 minutes" },
-      { q: "Expected value of a sum of two dice rolls?", options: ["6", "7", "8", "12"], correct: "7" },
-      { q: "Derivative of log(x)?", options: ["1/x", "x", "e^x", "log(e)"], correct: "1/x" },
-      { q: "Probability of getting exactly 2 heads in 3 coin flips?", options: ["1/4", "1/2", "3/8", "1/8"], correct: "3/8" },
-      { q: "If a call option is deep in-the-money, its delta is closest to?", options: ["0", "0.5", "1.0", "-1.0"], correct: "1.0" },
-      { q: "In a world series, what are the odds it goes to 7 games if each team has an equal chance?", options: ["1/4", "5/16", "1/2", "3/16"], correct: "5/16" },
-      { q: "What is the sum of integers from 1 to 100?", options: ["5000", "5050", "5100", "4950"], correct: "5050" },
-      { q: "Black-Scholes assumes returns follow which distribution?", options: ["Normal", "Log-normal", "Uniform", "Poisson"], correct: "Log-normal" },
-      { q: "If you double the volatility of an option, the Vega...", options: ["Doubles", "Halves", "Remains constant", "Depends on maturity"], correct: "Depends on maturity" },
-      { q: "Value at Risk (VaR) measures?", options: ["Max possible loss", "Expected loss", "Minimum loss at confidence level", "Average loss"], correct: "Minimum loss at confidence level" },
-      { q: "Correlation between two independent variables is?", options: ["1", "-1", "0", "0.5"], correct: "0" },
-      { q: "Number of ways to arrange the letters in 'QUANT'?", options: ["24", "60", "120", "720"], correct: "120" },
-      { q: "Standard deviation of a uniform distribution (0,1)?", options: ["1/12", "1/sqrt(12)", "1/2", "1/4"], correct: "1/sqrt(12)" },
-      { q: "A stock price follows a Random Walk. What is the expected price in 1 year if drift is 0?", options: ["0", "Current Price", "Infinity", "Undefined"], correct: "Current Price" },
-      { q: "Put-Call Parity: C - P = ?", options: ["S - K", "S - K*e^(-rt)", "K - S", "S + K"], correct: "S - K*e^(-rt)" },
-      { q: "What is 11 squared?", options: ["111", "121", "131", "141"], correct: "121" },
-      { q: "Which 'Greek' measures sensitivity to time decay?", options: ["Delta", "Gamma", "Vega", "Theta"], correct: "Theta" }
-    ];
+<script>
+  const questions = [
+    { q: "What is the expected number of rolls of a fair 6-sided die to get a 6?", options: ["3", "6", "12", "36"], correct: "6" },
+    { q: "You have 100 coins, one is biased (heads 60%). You pick one and flip it 10 times, getting 10 heads. What is the probability it's the biased coin?", options: ["~10%", "~50%", "~90%", "~99%"], correct: "~90%" },
+    { q: "What is the square root of 0.1?", options: ["0.01", "0.316", "0.1", "1.0"], correct: "0.316" },
+    { q: "If it takes 5 machines 5 minutes to make 5 widgets, how long does it take 100 machines to make 100 widgets?", options: ["1 minute", "5 minutes", "100 minutes", "500 minutes"], correct: "5 minutes" },
+    { q: "Expected value of a sum of two dice rolls?", options: ["6", "7", "8", "12"], correct: "7" },
+    { q: "Derivative of log(x)?", options: ["1/x", "x", "e^x", "log(e)"], correct: "1/x" },
+    { q: "Probability of getting exactly 2 heads in 3 coin flips?", options: ["1/4", "1/2", "3/8", "1/8"], correct: "3/8" },
+    { q: "If a call option is deep in-the-money, its delta is closest to?", options: ["0", "0.5", "1.0", "-1.0"], correct: "1.0" },
+    { q: "In a world series, what are the odds it goes to 7 games if each team has an equal chance?", options: ["1/4", "5/16", "1/2", "3/16"], correct: "5/16" },
+    { q: "What is the sum of integers from 1 to 100?", options: ["5000", "5050", "5100", "4950"], correct: "5050" },
+    { q: "Black-Scholes assumes returns follow which distribution?", options: ["Normal", "Log-normal", "Uniform", "Poisson"], correct: "Log-normal" },
+    { q: "If you double the volatility of an option, the Vega...", options: ["Doubles", "Halves", "Remains constant", "Depends on maturity"], correct: "Depends on maturity" },
+    { q: "Value at Risk (VaR) measures?", options: ["Max possible loss", "Expected loss", "Minimum loss at confidence level", "Average loss"], correct: "Minimum loss at confidence level" },
+    { q: "Correlation between two independent variables is?", options: ["1", "-1", "0", "0.5"], correct: "0" },
+    { q: "Number of ways to arrange the letters in 'QUANT'?", options: ["24", "60", "120", "720"], correct: "120" },
+    { q: "Standard deviation of a uniform distribution (0,1)?", options: ["1/12", "1/sqrt(12)", "1/2", "1/4"], correct: "1/sqrt(12)" },
+    { q: "A stock price follows a Random Walk. What is the expected price in 1 year if drift is 0?", options: ["0", "Current Price", "Infinity", "Undefined"], correct: "Current Price" },
+    { q: "Put-Call Parity: C - P = ?", options: ["S - K", "S - K*e^(-rt)", "K - S", "S + K"], correct: "S - K*e^(-rt)" },
+    { q: "What is 11 squared?", options: ["111", "121", "131", "141"], correct: "121" },
+    { q: "Which 'Greek' measures sensitivity to time decay?", options: ["Delta", "Gamma", "Vega", "Theta"], correct: "Theta" }
+  ];
 
-    let currentIdx = 0;
-    let userAnswers = new Array(questions.length).fill(null);
+  let currentIdx = 0;
+  let userAnswers = new Array(questions.length).fill(null);
 
-    function saveAnswer() {
-      const selected = document.querySelector('input[name="opt"]:checked');
-      if (selected) userAnswers[currentIdx] = selected.value;
-    }
+  function saveAnswer() {
+    const selected = document.querySelector('input[name="opt"]:checked');
+    if (selected) userAnswers[currentIdx] = selected.value;
+  }
 
-    function renderQuestion(index) {
-      saveAnswer();
-      currentIdx = index;
-      const question = questions[index];
-      document.getElementById("questionTitle").innerText = `Question ${index + 1}`;
-      document.getElementById("questionText").innerText = question.q;
+  function renderQuestion(index) {
+    saveAnswer();
+    currentIdx = index;
+    const question = questions[index];
+    document.getElementById("questionTitle").innerText = `Question ${index + 1}`;
+    document.getElementById("questionText").innerText = question.q;
+    
+    let html = "";
+    question.options.forEach(opt => {
+      const isChecked = userAnswers[index] === opt ? "checked" : "";
+      html += `<div class="option-row"><input type="radio" name="opt" value="${opt}" ${isChecked}> <span class="options">${opt}</span></div>`;
+    });
+    document.getElementById("optionsForm").innerHTML = html;
+
+    document.getElementById("first").style.display = index === 0 ? 'none' : 'inline-block';
+    document.getElementById("middle").style.display = index === questions.length - 1 ? 'none' : 'inline-block';
+    document.getElementById("last").style.display = index === questions.length - 1 ? 'inline-block' : 'none';
+  }
+
+  function nextQuestion() { renderQuestion(currentIdx + 1); }
+  function prevQuestion() { renderQuestion(currentIdx - 1); }
+  function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
+  function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+
+  // This function moves from the quiz to the "Review/Submit" screen
+  function myFunction3() {
+    saveAnswer();
+    document.getElementById("asdf").style.display = 'none';
+    document.getElementById("nav-buttons").style.display = 'none';
+    document.getElementById("qwer").style.display = 'block';
+  }
+
+  // This function handles the "Go Back" button
+  function myFunction4() {
+    document.getElementById("asdf").style.display = 'block';
+    document.getElementById("nav-buttons").style.display = 'block';
+    document.getElementById("qwer").style.display = 'none';
+    renderQuestion(currentIdx);
+  }
+
+  // FINAL SUBMISSION LOGIC
+  function submitQuiz() {
+    let score = 0;
+    let reviewHtml = "";
+    
+    questions.forEach((q, i) => {
+      const isCorrect = userAnswers[i] === q.correct;
+      if (isCorrect) score++;
       
-      let html = "";
-      question.options.forEach(opt => {
-        const isChecked = userAnswers[index] === opt ? "checked" : "";
-        html += `<div class="option-row"><input type="radio" name="opt" value="${opt}" ${isChecked}> <span class="options">${opt}</span></div>`;
-      });
-      document.getElementById("optionsForm").innerHTML = html;
-
-      document.getElementById("first").style.display = index === 0 ? 'none' : 'inline-block';
-      document.getElementById("middle").style.display = index === questions.length - 1 ? 'none' : 'inline-block';
-      document.getElementById("last").style.display = index === questions.length - 1 ? 'inline-block' : 'none';
-    }
-
-    function nextQuestion() { renderQuestion(currentIdx + 1); }
-    function prevQuestion() { renderQuestion(currentIdx - 1); }
-    function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
-    function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
-
-    function myFunction3() {
-      saveAnswer();
-      document.getElementById("asdf").style.display = 'none';
-      document.getElementById("nav-buttons").style.display = 'none';
-      document.getElementById("qwer").style.display = 'block';
-    }
-
-    function myFunction4() {
-      document.getElementById("asdf").style.display = 'block';
-      document.getElementById("nav-buttons").style.display = 'block';
-      document.getElementById("qwer").style.display = 'none';
-      renderQuestion(currentIdx);
-    }
-
-    function submitQuiz() {
-      let score = 0;
-      let reviewHtml = ``;
-      
-      questions.forEach((q, i) => {
-        const isCorrect = userAnswers[i] === q.correct;
-        if (isCorrect) score++;
-        
-        reviewHtml += `
-          <div class="result-box ${isCorrect ? 'correct' : 'wrong'}">
-            <strong>Q${i+1}: ${q.q}</strong><br>
-            Your Answer: <i>${userAnswers[i] || "Skipped"}</i><br>
-            Correct Answer: <b>${q.correct}</b>
-          </div>
-        `;
-      });
-
-      const display = document.getElementById("results-display");
-      display.innerHTML = `<div class="score-card">Final Score: ${score} / ${questions.length}</div>` + reviewHtml;
-      display.style.display = "block";
-      document.getElementById("review-area").style.display = "none";
-    }
-
-    // Sidebar Init
-    const list = document.getElementById("questionList");
-    questions.forEach((_, i) => {
-      let li = document.createElement("li");
-      li.innerHTML = `<a href="#" onclick="renderQuestion(${i}); closeNav();">Question ${i + 1}</a>`;
-      list.appendChild(li);
+      // We use the CSS classes 'correct' and 'wrong' you defined in test.css
+      reviewHtml += `
+        <div class="result-box ${isCorrect ? 'correct' : 'wrong'}">
+          <strong>Q${i+1}: ${q.q}</strong><br>
+          Your Answer: <i>${userAnswers[i] || "Skipped"}</i><br>
+          Correct Answer: <b>${q.correct}</b>
+        </div>
+      `;
     });
 
-    renderQuestion(0);
+    const display = document.getElementById("results-display");
+    display.innerHTML = `
+      <div class="score-card">Final Score: ${score} / ${questions.length}</div>
+      ${reviewHtml}
+      <div class="share"><a href="javascript:location.reload()" style="background:#1dc8cd; color:white;">Restart Test</a></div>
+    `;
+    
+    display.style.display = "block";
+    document.getElementById("review-area").style.display = "none";
+  }
 
-    // Timer
-    var countDownDate = new Date().getTime() + 1000 * 60 * 30;
-    var x = setInterval(function() {
-      var now = new Date().getTime();
-      var distance = countDownDate - now;
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
-      if (distance < 0) { clearInterval(x); submitQuiz(); }
-    }, 1000);
-  </script>
+  // Sidebar List Generation
+  const list = document.getElementById("questionList");
+  questions.forEach((_, i) => {
+    let li = document.createElement("li");
+    li.innerHTML = `<a href="#" onclick="renderQuestion(${i}); closeNav();">Question ${i + 1}</a>`;
+    list.appendChild(li);
+  });
+
+  // Initial Launch
+  renderQuestion(0);
+
+  // Timer Logic
+  var countDownDate = new Date().getTime() + 1000 * 60 * 30;
+  var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+    if (distance < 0) { 
+      clearInterval(x); 
+      document.getElementById("demo").innerHTML = "EXPIRED"; 
+      submitQuiz(); // Auto-submit when time is up
+    }
+  }, 1000);
+</script>
 </body>
 </html>
