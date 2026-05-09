@@ -1,117 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Questionnaire</title>
+  <title>Questionnaire & Login</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,100' rel='stylesheet' type='text/css'>
-  <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet' type='text/css'>
-  <link rel="icon" type="image/ico" href="https://res.cloudinary.com/shilp/image/upload/v1536338292/mobile/Asset.png">
-  <link href="test.css" type="text/css" rel="stylesheet"> <!-- Fixed: added > -->
+  
+  <!-- External Fonts and Normalization -->
+  <link href='https://googleapis.com' rel='stylesheet' type='text/css'>
+  <link href='https://cloudflare.com' rel='stylesheet' type='text/css'>
+  <link rel="icon" type="image/ico" href="https://cloudinary.com">
+  
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" type="text/css" href="test.css">
 </head>
 <body>
+
+  <!-- NAVBAR -->
   <div class="navbar">
     <div style="display:inline;">
-      <img src="ShilpLogo.png" style="max-width: 60px; height: auto; margin-top: -0.5%; padding-left:10px;">
-      <span style="font-size:1.8rem; position:relative; top:-1.1rem; padding:10px; color:white;">SHILP</span>
+      <img src="ShilpLogo.png" style="max-width: 40px; height: auto;" alt="Logo">
+      <span style="font-size:1.5rem; color:white; margin-left: 10px;">SHILP</span>
     </div>
-    <div style="display:inline;">
-      <span class="sgn" style="float:right; margin:1%; display:flex; justify-content:center; align-items:center;">
-        <a href="#"><img src="power.png" style="max-width: 20px; height: auto; top:-10px;"> SignOut</a>
-      </span>
-    </div>
+    <span class="sgn" style="float:right; margin-right:20px;">
+      <a href="#" style="color:white; text-decoration:none;">Sign Out</a>
+    </span>
   </div>
 
-  <div class="tyui">
-    <div class="a">
-      <span style="font-size:2rem; cursor:pointer; float:left; padding:15px 0 10px 10px;" onclick="openNav()">☰ Questions</span>
-      <div id="demo" style="float:right; padding:15px; font-size:1.5rem; color:red;"></div>
-    </div>
-  </div>
-
+  <!-- SIDENAV -->
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <ul style="list-style:none;">
-      <!-- Removed duplicate ID 20 and cleaned up list -->
-      <li id="q1" onclick="abcFunction1(1)"><a href="#">1</a></li>
-      <li id="q2" onclick="abcFunction1(2)"><a href="#">2</a></li>
-      <li id="q3" onclick="abcFunction1(3)"><a href="#">3</a></li>
-      <!-- ... add others ... -->
-      <li id="q20" onclick="abcFunction1(20)"><a href="#">20</a></li>
+    <ul style="list-style:none; padding: 0;">
+      <li onclick="abcFunction1(1)"><a href="#">Question 1</a></li>
+      <li onclick="abcFunction1(2)"><a href="#">Question 2</a></li>
+      <li onclick="abcFunction1(20)"><a href="#">Question 20</a></li>
     </ul>
   </div>
 
-  <br><br>
+  <!-- TIMER & HEADER -->
+  <div class="tyui" style="margin-top: 60px;">
+    <div class="a" style="background: white; padding: 10px; overflow: auto;">
+      <span style="font-size:1.5rem; cursor:pointer;" onclick="openNav()">☰ Questions</span>
+      <div id="demo" style="float:right; font-size:1.5rem; color:red; font-weight:bold;"></div>
+    </div>
+  </div>
 
+  <!-- QUESTION SECTION -->
   <div id="asdf">
     <div class="main1">
-      <br>
       <h2><u>Question</u></h2>
-      <p>William Henry Gates III (born October 28, 1955) is an American business magnate...</p>
-      <br>
-      <form action="/action_page.php">
+      <p>William Henry Gates III is an American business magnate and principal founder of Microsoft Corporation...</p>
+      <form>
         <div class="laptop">
-          <input type="checkbox" name="v1" value="Bike"><span class="options"> I have a bike</span>
-          <input type="checkbox" name="v2" value="Car"><span class="options"> I have a car</span>
+          <input type="checkbox"> I have a bike &nbsp;
+          <input type="checkbox"> I have a car
         </div>
       </form>
     </div>
   </div>
 
-  <div id="qwer" style="display:none;"> <!-- Hidden by default -->
+  <!-- SUBMISSION SECTION -->
+  <div id="qwer" style="display:none;">
     <div class="main">
-      <br>
       <h2>Final Submission. No changes will be made further.</h2>
       <div class="share">
-        <div onclick="myFunction4()" id="third"><a href="#">Go Back</a></div>
-        <div id="fourth"><a href="#">Final Submission</a></div>
+        <div onclick="myFunction4()"><a href="#">Go Back</a></div>
+        <div><a href="#" style="background: #67ae55; color: white;">Confirm</a></div>
       </div>
     </div>
   </div>
 
+  <!-- NAVIGATION BUTTONS -->
   <div class="share">
-    <div id="first" style="display:none;"><a href="#">Previous</a></div>
-    <div id="middle" data-q="2"><a href="#">Next</a></div>
-    <div id="last" onclick="myFunction3()" style="display:none;"><a href="#">Submit</a></div>
+    <div id="first" style="display:none;"><a href="#" onclick="abcFunction1(1)">Previous</a></div>
+    <div id="middle"><a href="#" onclick="abcFunction1(20)">Next</a></div>
+    <div id="last" style="display:none;" onclick="myFunction3()"><a href="#">Submit</a></div>
   </div>
 
-<script>
-function abcFunction1(id) {
-  id = parseInt(id);
-  if(id === 1) {
-    document.getElementById("first").style.display = 'none';
-    document.getElementById("middle").style.display = 'inline';
-    document.getElementById("last").style.display = 'none';
-  } else if(id === 20) {
-    document.getElementById("first").style.display = 'inline';
-    document.getElementById("middle").style.display = 'none';
-    document.getElementById("last").style.display = 'inline';
-  } else {
-    document.getElementById("first").style.display = 'inline';
-    document.getElementById("middle").style.display = 'inline';
-    document.getElementById("last").style.display = 'none';
-  }
-}
+  <script>
+    function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
+    function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
 
-function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
-function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
-
-// Fixed Timer Script
-var countDownDate = new Date().getTime() + 1000 * 30 * 60;
-var x = setInterval(function() {
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("demo").innerHTML = hours + "h " + minutes + "m " + seconds + "s"; // Fixed string
-
-    if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
+    function abcFunction1(id) {
+      if(id === 1) {
+        document.getElementById("first").style.display = 'none';
+        document.getElementById("middle").style.display = 'inline';
+        document.getElementById("last").style.display = 'none';
+      } else if(id === 20) {
+        document.getElementById("first").style.display = 'inline';
+        document.getElementById("middle").style.display = 'none';
+        document.getElementById("last").style.display = 'inline';
+      } else {
+        document.getElementById("first").style.display = 'inline';
+        document.getElementById("middle").style.display = 'inline';
+        document.getElementById("last").style.display = 'none';
+      }
+      closeNav();
     }
-}, 1000); // Fixed: Added closing bracket for interval
-</script>
+
+    function myFunction3() {
+      document.getElementById("asdf").style.display = 'none';
+      document.getElementById("qwer").style.display = 'block';
+      document.getElementById("first").style.display = 'none';
+      document.getElementById("middle").style.display = 'none';
+      document.getElementById("last").style.display = 'none';
+    }
+
+    function myFunction4() {
+      document.getElementById("asdf").style.display = 'block';
+      document.getElementById("qwer").style.display = 'none';
+      abcFunction1(20);
+    }
+
+    var countDownDate = new Date().getTime() + 1000 * 30 * 60;
+    var x = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      document.getElementById("demo").innerHTML = hours + "h " + minutes + "m " + seconds + "s";
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "TIME EXPIRED";
+      }
+    }, 1000);
+  </script>
 </body>
 </html>
