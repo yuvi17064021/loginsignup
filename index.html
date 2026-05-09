@@ -136,14 +136,6 @@
   }
 
   // This function handles the "Go Back" button
-  function myFunction4() {
-    document.getElementById("asdf").style.display = 'block';
-    document.getElementById("nav-buttons").style.display = 'block';
-    document.getElementById("qwer").style.display = 'none';
-    renderQuestion(currentIdx);
-  }
-
-  // FINAL SUBMISSION LOGIC
   function submitQuiz() {
     let score = 0;
     let reviewHtml = "";
@@ -152,15 +144,16 @@
       const isCorrect = userAnswers[i] === q.correct;
       if (isCorrect) score++;
       
+      // This HTML matches the new "Pretty" CSS classes
       reviewHtml += `
         <div class="result-card ${isCorrect ? 'correct' : 'wrong'}">
           <span class="status-badge ${isCorrect ? 'badge-correct' : 'badge-wrong'}">
               ${isCorrect ? '✓ Correct' : '✗ Incorrect'}
           </span>
-          <strong style="font-size:1.1rem;">Q${i+1}:</strong> 
-          <span style="color:#444;">${q.q}</span>
+          <strong style="font-size:1.1rem; color:#111;">Question ${i+1}</strong> 
+          <p style="margin: 10px 0; color:#555;">${q.q}</p>
           
-          <div style="margin-top:10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div class="ans-grid">
               <div>
                   <span class="ans-label">YOUR ANSWER</span>
                   <span class="ans-value" style="color:${isCorrect ? '#28a745' : '#d9534f'}">
@@ -170,7 +163,7 @@
               ${!isCorrect ? `
               <div>
                   <span class="ans-label">CORRECT ANSWER</span>
-                  <span class="ans-value correct-val">${q.correct}</span>
+                  <span class="ans-value correct-highlight">${q.correct}</span>
               </div>` : ''}
           </div>
         </div>
@@ -180,21 +173,27 @@
     const percentage = Math.round((score / questions.length) * 100);
     const display = document.getElementById("results-display");
     
+    // Building the Score Summary Header
     display.innerHTML = `
       <div class="score-summary">
           <span class="score-label">Final Grade</span>
           <span class="score-number">${percentage}%</span>
-          <p style="color:#666;">You got <b>${score}</b> out of <b>${questions.length}</b> questions correct.</p>
+          <p style="color:#666; margin-top:10px;">You answered <b>${score}</b> out of <b>${questions.length}</b> correctly.</p>
       </div>
       ${reviewHtml}
       <div class="share" style="margin-top:30px;">
-          <a href="javascript:location.reload()" style="background:#1dc8cd; color:white;">Try Again</a>
+          <a href="javascript:location.reload()" style="background:#1dc8cd; color:white; border:none;">Restart Quiz</a>
       </div>
     `;
     
+    // Show the results and hide the review text
     display.style.display = "block";
     document.getElementById("review-area").style.display = "none";
+    
+    // Scroll to the top of the results automatically
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
 
 
   // Sidebar List Generation
