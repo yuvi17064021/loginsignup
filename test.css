@@ -25,8 +25,8 @@ body {
 
 h2 { border-bottom: 2px solid #1dc8cd; padding-bottom: 10px; margin-top: 0; color: #111; }
 
-.option-container { display: flex; align-items: center; padding: 8px; margin-bottom: 5px; transition: 0.2s; border-radius: 5px; }
-.option-container:hover { background: #f0fbfc; }
+.option-row { display: flex; align-items: center; padding: 10px; transition: 0.2s; border-radius: 5px; }
+.option-row:hover { background: #f0fbfc; }
 .options { font-size: 1.1rem; margin-left: 10px; cursor: pointer; }
 
 .share { text-align: center; margin-bottom: 50px; }
@@ -36,10 +36,18 @@ h2 { border-bottom: 2px solid #1dc8cd; padding-bottom: 10px; margin-top: 0; colo
 }
 .share a:hover { background: #1dc8cd; color: white; }
 
-/* Result Specific Styles */
-.result-item { padding: 15px; margin-bottom: 10px; border-radius: 6px; border-left: 5px solid transparent; }
-.result-correct { background-color: #e9f7ef; border-left-color: #28a745; }
-.result-wrong { background-color: #fdf2f2; border-left-color: #d9534f; }
-.score-header { text-align: center; font-size: 2rem; color: #1dc8cd; margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; }
+/* Result Box Styling */
+.result-box {
+    padding: 15px; margin-bottom: 15px; border-radius: 8px; border-left: 6px solid;
+}
+.result-box.correct {
+    background-color: #e8f5e9; border-left-color: #28a745; color: #2e7d32;
+}
+.result-box.wrong {
+    background-color: #ffebee; border-left-color: #d9534f; color: #c62828;
+}
+.score-card {
+    text-align: center; font-size: 2.2rem; font-weight: bold; color: #1dc8cd; padding: 20px; background: #f8f9fa; border-radius: 10px; margin-bottom: 30px;
+}
 
 @media (max-width: 768px) { .main1 { margin: 20px; padding: 20px; } }
