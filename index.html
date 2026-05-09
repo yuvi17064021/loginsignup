@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <!-- MAIN CONTENT AREA -->
+  <!-- MAIN CONTENT AREA (The Questions) -->
   <div id="asdf">
     <div class="main1">
       <h2 id="questionTitle">Question 1</h2>
@@ -46,22 +46,25 @@
     </div>
   </div>
 
-  <!-- SUBMISSION/RESULTS SCREEN -->
+  <!-- SUBMISSION & RESULTS SCREEN -->
   <div id="qwer" style="display:none;">
     <div class="main">
       <div id="review-area">
           <h2>Final Submission</h2>
           <p>Review your answers carefully before submitting.</p>
+          <div class="share" id="submission-buttons">
+            <div onclick="myFunction4()"><a href="#">Go Back</a></div>
+            <!-- FIXED: Added onclick="submitQuiz()" here -->
+            <div onclick="submitQuiz()"><a href="#" style="background: #28a745; color: white; border: none;">Submit Exam</a></div>
+          </div>
       </div>
-      <div id="results-display" style="display:none; margin-top: 20px;"></div>
-      <div class="share" id="submission-buttons">
-        <div onclick="myFunction4()"><a href="#">Go Back</a></div>
-        <div onclick="submitQuiz()"><a href="#" style="background: #28a745; color: white; border: none;">Submit Exam</a></div>
-      </div>
+      
+      <!-- This is where the score and breakdown will appear -->
+      <div id="results-display" style="display:none;"></div>
     </div>
   </div>
 
-  <!-- NAVIGATION -->
+  <!-- NAVIGATION BUTTONS -->
   <div class="share" id="nav-buttons">
     <div id="first" style="display:none;"><a href="#" onclick="prevQuestion()">Previous</a></div>
     <div id="middle"><a href="#" onclick="nextQuestion()">Next</a></div>
@@ -110,7 +113,7 @@
       let html = "";
       question.options.forEach(opt => {
         const isChecked = userAnswers[index] === opt ? "checked" : "";
-        html += `<div class="option-container"><input type="radio" name="opt" value="${opt}" ${isChecked}> <span class="options">${opt}</span></div>`;
+        html += `<div class="option-row"><input type="radio" name="opt" value="${opt}" ${isChecked}> <span class="options">${opt}</span></div>`;
       });
       document.getElementById("optionsForm").innerHTML = html;
 
@@ -141,30 +144,34 @@
     function submitQuiz() {
       let score = 0;
       let reviewHtml = ``;
+      
       questions.forEach((q, i) => {
         const isCorrect = userAnswers[i] === q.correct;
         if (isCorrect) score++;
+        
         reviewHtml += `
-          <div class="result-item ${isCorrect ? 'result-correct' : 'result-wrong'}">
+          <div class="result-box ${isCorrect ? 'correct' : 'wrong'}">
             <strong>Q${i+1}: ${q.q}</strong><br>
-            Your Answer: <b>${userAnswers[i] || "No Answer"}</b><br>
-            ${!isCorrect ? `<span style="color:#d9534f;">Correct: ${q.correct}</span>` : '<span>Correct!</span>'}
-          </div>`;
+            Your Answer: <i>${userAnswers[i] || "Skipped"}</i><br>
+            Correct Answer: <b>${q.correct}</b>
+          </div>
+        `;
       });
+
       const display = document.getElementById("results-display");
-      display.innerHTML = `<div class="score-header">Score: ${score} / ${questions.length}</div>` + reviewHtml;
+      display.innerHTML = `<div class="score-card">Final Score: ${score} / ${questions.length}</div>` + reviewHtml;
       display.style.display = "block";
       document.getElementById("review-area").style.display = "none";
-      document.getElementById("submission-buttons").style.display = "none";
     }
 
-    // Sidebar & Init
+    // Sidebar Init
     const list = document.getElementById("questionList");
     questions.forEach((_, i) => {
       let li = document.createElement("li");
       li.innerHTML = `<a href="#" onclick="renderQuestion(${i}); closeNav();">Question ${i + 1}</a>`;
       list.appendChild(li);
     });
+
     renderQuestion(0);
 
     // Timer
@@ -175,7 +182,7 @@
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
       document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
-      if (distance < 0) { clearInterval(x); document.getElementById("demo").innerHTML = "EXPIRED"; submitQuiz(); }
+      if (distance < 0) { clearInterval(x); submitQuiz(); }
     }, 1000);
   </script>
 </body>
